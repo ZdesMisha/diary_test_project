@@ -1,0 +1,35 @@
+<div>
+    <nav aria-label="..." ng-if="products.length!=0">
+        <ul class="pager">
+            <li class="previous" ng-click="getPreviousPage(pagination.currentPage-1)"><a
+                    ng-show="!pagination.currentPage==0" class="canClick"><span aria-hidden="true">&larr;</span>
+                Previous</a></li>
+            <li class="next" ng-click="getNextPage(pagination.currentPage+1)"><a ng-show="!pagination.isLastPage"
+                                                                                 class="canClick">Next <span
+                    aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+    <table class="table table-bordered" ng-if="products.length!=0">
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Date/Time</th>
+        </tr>
+
+        <tbody>
+        <tr ng-repeat="product in products">
+            <td>{{product.code}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}$</td>
+            <td>{{product.p_date}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div ng-if="products.length==0">
+        <h2>No products yet. </h2>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,21 @@
+body {
+    height: 90vh !important;
+}
+
+.my-jumbotron {
+    background-color: white;
+    height: 100%;
+}
+
+.my-table {
+    height: 100%;
+}
+
+.my-table tbody {
+    width: 100%;
+    display: block;
+    overflow-y: auto;
+}
+.canClick {
+    cursor: pointer;
+}
