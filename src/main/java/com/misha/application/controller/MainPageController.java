@@ -13,12 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainPageController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MainPageController.class);
+        private static final Logger LOG = LoggerFactory.getLogger(MainPageController.class);
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView index() {
-
-        LOG.info("Requesting main page...");
+         LOG.info("Requesting main page...");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
         return mav;

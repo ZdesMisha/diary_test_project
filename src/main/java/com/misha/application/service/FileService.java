@@ -58,7 +58,6 @@ public class FileService {
         try {
             Workbook workbook;
             String fileName = file.getOriginalFilename();
-            System.out.println(fileName);
             if (fileName.endsWith(XLS_FORMAT)) {
                 workbook = WorkbookFactory.create(file.getInputStream());
             } else if (fileName.endsWith(XLSX_FORMAT)) {
@@ -66,15 +65,15 @@ public class FileService {
             } else {
                 throw new FileValidationException("Wrong file format");
             }
-            //POIFSFileSystem fs = new POIFSFileSystem(file.getInputStream());
             Sheet sheet = workbook.getSheetAt(FIRST_SHEET);
             for (Row row : sheet) {
                 Product product = parseRow(row);
                 list.add(product);
             }
-            list.forEach(System.out::println);
             productService.saveAll(list);
-        } catch (IOException | InvalidFormatException ex) {
+        } catch (InvalidFormatException ex) {
+            throw new FileValidationException("Cannot process this file type");
+        } catch (IOException ex) {
             throw new RuntimeException(ex.getMessage());
         }
     }
@@ -92,7 +91,7 @@ public class FileService {
     }
 
     private void validateFile(MultipartFile file) {
-        if (file.getSize() > 5000000) {
+        if (file.getSize() > fileMaxSize) {
             throw new FileValidationException("Max file size (50Mb) is exceeded.");
         }
     }
@@ -104,9 +103,7 @@ public class FileService {
             List<String> errors = new ArrayList<>();
             for (ConstraintViolation<Product> violation : violations) {
                 errors.add(violation.getMessage());
-                System.out.println(violation);
             }
-            LOG.error("Product is not valid. Product: {}", product);
             throw new ProductValidationException(errors);
         }
     }

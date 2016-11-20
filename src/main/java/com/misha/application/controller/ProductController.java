@@ -30,15 +30,14 @@ public class ProductController {
     @RequestMapping(value = "/product-table", method = RequestMethod.GET)
     @ResponseStatus(OK)
     public JsonResponse getAll(@RequestParam int page) {
-        int checkedPage = page < 0 ? 0 : page;
-        LOG.info("Requesting for products. Page {}", page);
-        return buildJsonResponse(productService.getAll(checkedPage));
+         LOG.info("Requesting for products. Page {}", page);
+        return buildJsonResponse(productService.getAll(page));
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseStatus(OK)
     public JsonResponse upload(MultipartFile file) {
-        LOG.info("Uploading file {}, size: {}", file.getName(), file.getSize());
+         LOG.info("Uploading file {}, size: {}", file.getName(), file.getSize());
         fileService.parseFile(file);
         return buildJsonResponse("File uploaded");
     }

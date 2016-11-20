@@ -7,6 +7,6 @@ public class PaginationUtils {
     public static final int PAGE_SIZE = 15;
 
     public static int getStartRecord(int page) {
-        return page * PAGE_SIZE;
+        return page < 0 ? 0 : page * PAGE_SIZE;
     }
 }

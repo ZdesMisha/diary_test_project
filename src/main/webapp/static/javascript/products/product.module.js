@@ -12,14 +12,17 @@ angular.module('product', ['angularFileUpload'])
             $scope.uploader = new FileUploader({
                 url: "/upload",
                 onErrorItem: function (error) {
-                    showUploadError(error._xhr.responseText);
-                    console.log(error._xhr.responseText);
+                    showUploadError(formatError(error._xhr.responseText));
                 }
             });
 
             function showUploadError(message) {
                 $scope.uploadError.show = true;
                 $scope.uploadError.message = message;
+            }
+
+            function formatError(error){
+                return error.replace("{\"response\":\"","").replace("\"}","");
             }
 
         })
@@ -78,11 +81,9 @@ angular.module('product', ['angularFileUpload'])
             console.log("requesting page " + page);
             return $http.get('/product-table/?page=' + page).then(
                 function (success) {
-                    console.log("RESPONSE");
                     console.log(success);
                     return success.data.response;
                 }, function (error) {
-                    console.log("ERROR");
                     console.log(error);
                     return [];
                 });

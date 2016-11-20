@@ -26,7 +26,7 @@ public class Product {
     private int code;
 
     @Column(name = "name")
-    @Size(min = 1,max = 100,message = "Name size must be between 1 and 10 symbols")
+    @Size(min = 3, max = 100, message = "Name size must be between 3 and 100 symbols")
     private String name;
 
     @Column(name = "price")

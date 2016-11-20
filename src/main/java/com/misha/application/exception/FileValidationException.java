@@ -5,7 +5,7 @@ package com.misha.application.exception;
  */
 public class FileValidationException extends RuntimeException {
 
-    public FileValidationException(String message){
+    public FileValidationException(String message) {
         super(message);
     }
 

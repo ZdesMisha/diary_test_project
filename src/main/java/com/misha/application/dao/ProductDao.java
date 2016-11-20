@@ -37,7 +37,6 @@ public class ProductDao {
 
     @Transactional
     public void saveAll(List<Product> list) {
-        System.out.println("Trying to persist");
         int i = 0;
         for (Product product : list) {
             entityManager.persist(product);

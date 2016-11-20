@@ -17,11 +17,11 @@ public class ProductService {
     @Autowired
     private ProductDao productDao;
 
-    public List<Product> getAll(int page){
+    public List<Product> getAll(int page) {
         return productDao.getAll(page);
     }
 
-    public void saveAll(List<Product> list){
+    public void saveAll(List<Product> list) {
         productDao.saveAll(list);
     }
 
